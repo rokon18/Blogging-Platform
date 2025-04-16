@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+</head>
+<body>
+    <h1 align="center">Login Form</h1>
+    <form  align="center" onsubmit="return validateName()">
+        <fieldset>
+            <legend>Login </legend>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+            <br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <br><br>
+            <button type="submit">Login</button>
+            <br><br>
+            <a href="">Forgot Password?</a>
+            <br>
+            <p>Don't have an account  <a href="">Sign Up</a></p>
+           
+        </fieldset>
+    </form>
+    <p id="msg"></p>
+
+    <script>
+        function validateName() {
+            let nameInput = document.getElementById('username').value
+            let passwordInput = document.getElementById('password').value
+            let msg = document.getElementById('msg');
+            let namePattern = /^[a-zA-Z][a-zA-Z.\-\s]*$/;
+
+            if (nameInput === "") {
+                msg.innerHTML = "Name cannot be empty.";
+                msg.style.color = 'red';
+                return false;
+            }
+            else if (nameInput.length < 2) {
+                msg.innerHTML = "Name must contain at least two words.";
+                msg.style.color = 'red';
+                return false;
+            }
+            else if (!namePattern.test(nameInput)) {
+                msg.innerHTML = "Name must start with a letter and can only contain letters, dots (.), dashes (-), and spaces.";
+                msg.style.color = 'red';
+                return false;
+            }
+            if (passwordInput === "") {
+                msg.innerHTML = "password cannot be empty.";
+                msg.style.color = 'red';
+                return false;
+            }
+            else if (passwordInput.length < 6) {
+                msg.innerHTML = "password must contain at least 6 character.";
+                msg.style.color = 'red';
+                return false;
+            }else{
+            msg.innerHTML = "";
+            return true;
+        }
+        
+        }
+    </script>
+</body>
+</html>
