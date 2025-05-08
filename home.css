@@ -11,6 +11,11 @@ header {
     align-items: center;
     padding: 20px 40px;
     border-bottom: 2px solid #e6e6e6;
+    position: fixed ;
+    width: 95%;
+    top: 0;
+    z-index:1000;
+    background-color: #fdfcfb; 
 }
 
 header .logo {
@@ -54,18 +59,19 @@ background-repeat: no-repeat;
 background-position: center; 
 height: 100vh;
 color: #fff;
+
  
 }
 
 .content h1 {
     font-size: 64px;
     line-height: 1.2;
-    margin: 0;
+    margin-top: 100px;
 }
 
 .content p {
     font-size: 20px;
-    margin: 20px 0;
+    margin-top: 0px ;
 }
 
 .content .btn {
