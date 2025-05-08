@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
-    <link rel="stylesheet"  href="home.css">
-    <link rel="stylesheet"  href="login.css">
+   
+   <link rel="stylesheet"  href="loginform.css">
     
 </head>
-<div>
-        <div class="logo">Blogging</div>
-        <nav>
-        
-        </nav>
-    </div>
-    
-</body>
+
+  
 <body>
+    <div class="header">
+        <label for="header">Blogging</label>
+
+      
+    </div>
+    <section class="form">
     <h1 align="center">Welcome back</h1>
    <form  align="center" onsubmit="return validateName()">
   <!-- <form  align="center" method="post" action="login.php">-->
         
-            
+          
             <label for="username">Username:</label>
             <input type="text" id="username" name="username">
             <br><br>
@@ -36,8 +36,14 @@
            
     </form>
     <p id="msg"></p>
+    </section>
 
     <script src="login.js">
     </script>
+</body>
+
+
+        
+    
 </body>
 </html>
