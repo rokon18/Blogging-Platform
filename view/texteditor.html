@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rich Text Editor</title>
+  <link rel="stylesheet" href="../assets/css/texteditor.css" />
+</head>
+<body>
+  <div class="editor-container">
+    <h2>📝 Write Your Post</h2>
+
+    <label for="category">Category:</label>
+    <select id="category" class="category-select">
+      <option value="">-- Select --</option>
+      <option value="science">Science</option>
+      <option value="sports">Sports</option>
+      <option value="technology">Technology</option>
+      <option value="health">Health</option>
+      <option value="entertainment">Entertainment</option>
+    </select>
+
+    <div class="toolbar">
+      <button onclick="format('bold')"><b>B</b></button>
+      <button onclick="format('h1')">H1</button>
+      <button onclick="insertImage()">📷 Image</button>
+      <button onclick="insertLink()">🔗 Link</button>
+      <button onclick="togglePreview()">👁️ Preview</button>
+    </div>
+
+    <div id="editor" contenteditable="true" class="editor" ondrop="dropHandler(event)" ondragover="event.preventDefault()">
+      <p>Start writing your post here...</p>
+    </div>
+
+    <div id="preview" class="preview" style="display: none;"></div>
+
+    <button class="submit-btn" onclick="submitPost()">📤 Submit Post</button>
+  </div>
+
+  <script src="../assets/js/texteditor.js"></script>
+</body>
+</html>

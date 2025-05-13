@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Author Profile</title>
+  <link rel="stylesheet" href="../assets/css/author_profile.css">
+</head>
+<body>
+
+<div class="profile-container" id="profileContainer">
+  <h2>Author Profile</h2>
+
+  <div class="photo-section">
+    <img id="bioPhoto" src="default.jpg" alt="Profile Photo">
+    <input type="file" id="photoInput" onchange="uploadPhoto()">
+  </div>
+
+  <div class="about-section">
+    <textarea id="aboutInput" placeholder="Write about yourself..."></textarea>
+    <button onclick="saveAbout()">Save About Me</button>
+    <p id="aboutDisplay"></p>
+  </div>
+
+  <div class="social-section">
+    <input type="text" id="facebook" placeholder="Facebook URL">
+    <input type="text" id="twitter" placeholder="Twitter URL">
+    <button onclick="addSocialLinks()">Add Social Links</button>
+    <div id="socialContainer"></div>
+  </div>
+
+  <div class="verified-section">
+    <input type="checkbox" id="verifiedCheck" onchange="toggleBadge()"> Verified Staff
+    <span id="verifiedBadge" style="display: none;">✔ Verified</span>
+  </div>
+
+  <button onclick="viewPosts()">View Author Posts</button>
+  <div id="postsList" style="display: none;">
+    <h3>Author Posts</h3>
+    <ul>
+      <li>Post 1: Welcome to My Blog</li>
+      <li>Post 2: How I Started Blogging</li>
+    </ul>
+    <button onclick="viewProfile()">Back to Profile</button>
+  </div>
+</div>
+
+<script src="../assets/js/author_profile.js"></script>
+</body>
+</html>
