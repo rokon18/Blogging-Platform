@@ -1,3 +1,5 @@
+<?php 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +14,8 @@
     </div>
     <section class="form">
         <h1 align="center">Create an Account</h1>
-        <form align="center" onsubmit="return validateName()">
+        <!--<form align="center" onsubmit="return validateName()">-->
+         <form  align="center" method="post" action="../controler/signupcheck.php"onsubmit="return validateName()">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" >
             <br><br>
