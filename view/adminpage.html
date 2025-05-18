@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+       <link rel="stylesheet"  href="../assets/css/adminpage.css">
+  
+</head>
+<body>
+  <header class="header">
+        <div class="logo">Blogging</div>
+        <nav>
+            
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            
+            <nav>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Posts</a></li>
+                    <li><a href="#">Topics</a></li>
+                    <li><a href="#">Users</a></li>
+                    <li><a href="#">Roles</a></li>
+                    <li><a href="#">Permissions</a></li>
+                    <li><a href="#">Collections</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+           
+                <h1>Posts</h1>
+                
+            
+          
+            <section class="post-list">
+                <div class="filter">
+                    <input type="text" placeholder="Search posts...">
+                    <select>
+                        <option value="">--Filter--</option>
+                    </select>
+                </div>
+              <table>
+    <thead>
+        <tr>
+            <th>SN</th>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Topic</th>
+            <th>Publish</th>
+            <th>Select</th> 
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Awa Melvine</td>
+            <td>Defining Moments</td>
+            <td>Life Experiences</td>
+            <td>Unpublished</td>
+            <td><input type="checkbox" name="postSelect"></td> 
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Awa Melvine</td>
+            <td>The Stuff of Cuteness</td>
+            <td>Jokes & Memes</td>
+            <td>Unpublished</td>
+            <td><input type="checkbox" name="postSelect"></td> 
+        </tr>
+    </tbody>
+</table>
+<div class="feature-post-action">
+    <button class="add-feature-btn">Add Feature Post</button>
+    <button class="add-delete-btn">Delete Post</button>
+</div>
+
+                <div class="actions">
+                    <button class="trash">Trash</button>
+                    <button class="add-post">Add Post</button>
+                </div>
+            </section>
+        
+    </div>
+</body>
+</html>
