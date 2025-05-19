@@ -1,0 +1,27 @@
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.edit-btn, .delete-btn, .view-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    text-decoration: none;
+    color: white;
+    border-radius: 3px;
+}
+
+.edit-btn { background-color: #28a745; } 
+.delete-btn { background-color: #dc3545; }
+.view-btn { background-color: #007BFF; }
+
+.edit-btn:hover { background-color: #218838; }
+.delete-btn:hover { background-color: #c82333; }
+.view-btn:hover { background-color: #0056b3; }

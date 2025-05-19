@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+
+.posts-section {
+    width: 50%;
+    background-color: #f4f4f4;
+    padding: 15px;
+}
+
+
+.collection-section {
+    width: 50%;
+    background-color: #e6e6e6;
+    padding: 15px;
+}
+
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+
+.save-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.save-btn:hover {
+    background-color: #0056b3;
+}

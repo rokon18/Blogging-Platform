@@ -1,6 +1,6 @@
 <?php
 
-$page = isset($_GET['page']) ? $_GET['page'] : 'admin_post';
+$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 'admin_post';
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +25,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'admin_post';
                 <li><a href="adminpage.php?page=admin_post">Posts</a></li>
                 <li><a href="adminpage.php?page=admin_users">Users</a></li>
                 <li><a href="adminpage.php?page=admin_role">Roles</a></li>
-                <li><a href="adminpage.php?page=admin_collections">Collections</a></li>
+                <li><a href="adminpage.php?page=admin_collection">Collections</a></li>
                 <li><a href="adminpage.php?page=logout">logout</a></li>
             </ul>
         </nav>

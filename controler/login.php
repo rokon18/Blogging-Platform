@@ -1,5 +1,5 @@
 <?php
-/*
+
 if (isset($_POST['submit'])) {
     $name = trim($_POST['username']);
     $password = trim($_POST['password']);
@@ -28,6 +28,6 @@ if (isset($_POST['submit'])) {
 
 } else {
     echo "Invalid request! Please submit the form!";
-}*/
+}
 
 ?>
