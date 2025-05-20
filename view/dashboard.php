@@ -53,6 +53,32 @@ $articles = [
     <link rel="stylesheet" href="../assets/css/dashboard.css">
 </head>
 <body>
+    <header>
+    <div class="logo">Blogging</div>
+    
+    <nav>
+        <a href="#">Our story</a>
+        <a href="Newsltrsignup.html">Membership</a>
+        <a href="../Blogging-Platform/view/login.php">Write</a>
+        
+       
+        <div class="notification">
+            <span class="bell">&#128276;</span>
+            <span class="badge">3</span>
+        </div>
+
+     
+        <div class="profile">
+            <img src="../assets/img/istockphoto-1053936212-1024x1024.jpg" alt="Profile" class="profile-img">
+            <span class="username" onclick="toggleMenu()">Admin </span>
+            <div class="dropdown-menu" id="profileMenu">
+                <a href="../view/profile.php">Update Profile</a>
+                <a href="../view/adminpage.php">Admin Page</a>
+                <a href="../controler/logout.php">Logout</a>
+            </div>
+        </div>
+    </nav>
+</header>
     <div class="container">
         <div class="header">
             <h2>Recent Articles</h2>
@@ -79,8 +105,12 @@ $articles = [
             <?php } ?>
         </div>
     </div>
+    <script src="../assets/js/dashboard.js"></script>
 </body>
 </html>
+
+
+ 
 <?php
     }else{
         header('location: login.php');
