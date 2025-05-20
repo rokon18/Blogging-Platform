@@ -1,5 +1,7 @@
 <?php
-
+    session_start();
+   
+        
 if (isset($_POST['submit'])) {
     $name = trim($_POST['username']);
     $password = trim($_POST['password']);
@@ -10,7 +12,7 @@ if (isset($_POST['submit'])) {
         echo "Name must contain at least two characters!";
     } else if (!ctype_alpha($name[0])) {
         echo "Name must start with a letter!";
-    }  else if (strlen($password) <= 6) {
+    }  else if (strlen($password) <6) {
         echo "password must contain at least six characters!";
     } 
      else {
@@ -21,9 +23,11 @@ if (isset($_POST['submit'])) {
                 break;
             }
             
-        } 
+        } $_SESSION['status'] = true;
+          
         header("Location: ../view/dashboard.php");
         exit();
+        
           
         
     }
