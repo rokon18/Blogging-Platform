@@ -22,7 +22,9 @@ if (isset($_POST['submit'])) {
             }
             
         } 
-        echo "submitted successfully!!!";    
+        header("Location: ../view/dashboard.php");
+        exit();
+          
         
     }
 

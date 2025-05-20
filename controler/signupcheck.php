@@ -15,7 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $result = insertUser($username, $password, $email);
 
         if ($result) {
-            echo "Signup successful!";
+            header("Location: ../view/email_verification.php");
+            exit();
         } else {
             echo "Database error!";
         }
