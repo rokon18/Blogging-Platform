@@ -99,7 +99,7 @@ $articles = [
                             <img src="<?= $article['author_image'] ?>" alt="Author">
                             <span><?= $article['author_name'] ?></span>
                         </div>
-                        <a href="article.php?id=<?= $article['id'] ?>">Read more →</a>
+                        <a href="">Read more →</a>
                     </div>
                 </div>
             <?php } ?>

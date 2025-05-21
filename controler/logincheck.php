@@ -1,6 +1,8 @@
 <?php
     session_start();
-   
+   if(isset($_SESSION['status'])){
+?>
+<?php
         
 if (isset($_POST['submit'])) {
     $name = trim($_POST['username']);
@@ -36,4 +38,9 @@ if (isset($_POST['submit'])) {
     echo "Invalid request! Please submit the form!";
 }
 
+?>
+<?php
+    }else{
+        header('location: signup.php');
+    }
 ?>

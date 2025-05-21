@@ -28,7 +28,7 @@
             <button type="submit" name="submit">Login</button>
             <br><br>
 
-            <a href="#">Forgot Password?</a>
+            <a href="forgot_password.php">Forgot Password?</a>
             <br>
             <p>Don't have an account? <a href="../view/signup.php">Sign Up</a></p>
             <p id="msg"></p>
