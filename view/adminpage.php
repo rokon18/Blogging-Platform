@@ -13,9 +13,7 @@ $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 'admin_post';
 </head>
 <body>
 
-<header class="header">
-    <div class="logo">Blogging</div>
-</header>
+<?php include "../view/header.php"; ?>
 
 <div class="container">
     <aside class="sidebar">
