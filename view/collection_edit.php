@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../assets/css/collection_edit.css">
 </head>
 <body>
+<?php include '../view/header.php'; ?>
     <h1>Edit Collection</h1>
 
 <div class="container">

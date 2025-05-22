@@ -14,7 +14,9 @@ $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_collection'])) {
     $new_title = trim($_POST['collection_title']);
-    if ($new_title !== "") {
+    if ($new_title === "") {
+        $error = "Collection title cannot be empty.";
+    } else {
         $collections = $_SESSION['collections'];
         $is_unique = true;
         foreach ($collections as $collection) {

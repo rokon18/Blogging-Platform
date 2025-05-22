@@ -1,18 +1,19 @@
 <?php
-require_once '../controler/collection_controller.php';
+require_once '../controler/admin_collectioncontroller.php';
 ?>
 <h1>Manage Collections</h1>
 
 <link rel="stylesheet" href="../assets/css/admin_collection.css">
 
-<script src="../assets/js/admin_collection.js"></script>
+<!--<script src="../assets/js/admin_collection.js"></script>-->
 <?php if (isset($error) && !empty($error)) { ?>
     <div class="error" style="color:red;margin-bottom:10px;">
         <?php echo $error; ?>
     </div>
 <?php } ?>
 
-<form method="POST" action="" id="collectionForm" >
+
+<form method="POST" action="" id="collectionForm"onsubmit="return validateUniqueTitle()">
     <input type="text" name="collection_title" id="collectionTitle" placeholder="Enter Collection Name" >
     <button type="submit" name="add_collection">Add Collection</button>
 </form>

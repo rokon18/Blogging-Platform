@@ -21,10 +21,17 @@ function validateUniqueTitle() {
         }
         msg.innerHTML = "Collection title must be unique.";
         return false;
-    } else if (msg) {
+    } else if (input === "") {
+        if (msg) {
+            msg.innerHTML = "Collection title cannot be empty.";
+            msg.style.display = "block";
+        }
+        return false;
+    }else if (msg) {
         msg.innerHTML = "";
+        msg.style.display = "none";
     }
+
     return true;
 }
 
-document.getElementById('collectionForm').onsubmit = validateUniqueTitle;
