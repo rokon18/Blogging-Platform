@@ -1,3 +1,4 @@
+<?php require_once '../controler/admin_usercontroler.php'; ?>
 <h1>User Management</h1>
 <table>
     <thead>
@@ -11,20 +12,18 @@
     </thead>
     <tbody>
         <?php
-        
-        $users = [
-            ["id" => 1, "username" => "admin", "email" => "admin@example.com", "role" => "Admin"],
-            ["id" => 2, "username" => "john_doe", "email" => "john@example.com", "role" => "user"],
-            ["id" => 3, "username" => "jane_smith", "email" => "jane@example.com", "role" => "Subscriber"]
-        ];
-
         foreach ($users as $index => $user) {
             echo "<tr>";
             echo "<td>" . ($index + 1) . "</td>";
             echo "<td>" . $user['username'] . "</td>";
             echo "<td>" . $user['email'] . "</td>";
             echo "<td>" . $user['role'] . "</td>";
-            echo '<td> <button class="delete-btn">Delete</button></td>';
+            echo '<td>
+                <form method="POST" action="" >
+                    <input type="hidden" name="delete_id" value="' . $user['id'] . '">
+                    <button type="submit" class="delete-btn" onclick="return confirm(\'Are you sure?\')">Delete</button>
+                </form>
+            </td>';
             echo "</tr>";
         }
         ?>
