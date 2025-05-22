@@ -7,7 +7,7 @@ if (!isset($_SESSION['status'])) {
     exit;
 }
 
-// In a real app, fetch articles from the database
+
 $articles = [
     [
         'id' => 1,
