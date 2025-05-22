@@ -25,7 +25,15 @@
      
         <div class="profile">
             <img src="../assets/img/istockphoto-1053936212-1024x1024.jpg" alt="Profile" class="profile-img">
-            <span class="username" onclick="toggleMenu()">Admin </span>
+             <span class="username" onclick="toggleMenu()">
+                    <?php
+                    if (isset($_SESSION['username'])) {
+                        echo $_SESSION['username'];
+                    } else {
+                        echo 'Profile';
+                    }
+                    ?>
+                </span>
             <div class="dropdown-menu" id="profileMenu">
                 <a href="../view/profile.php">Update Profile</a>
                 <a href="../view/adminpage.php">Admin Page</a>

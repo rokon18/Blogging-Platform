@@ -1,6 +1,6 @@
 <?php
     session_start();
-   if(isset($_SESSION['status'])){
+   // if(isset($_SESSION['status'])){
 ?>
 <?php
         
@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
             }
             
         } $_SESSION['status'] = true;
-          
+           $_SESSION['username'] = $name;
         header("Location: ../view/dashboard.php");
         exit();
         
@@ -38,9 +38,4 @@ if (isset($_POST['submit'])) {
     echo "Invalid request! Please submit the form!";
 }
 
-?>
-<?php
-    }else{
-        header('location: signup.php');
-    }
 ?>
