@@ -30,7 +30,7 @@ require_once '../controler/admin_postcontroler.php';
                 echo "<td>" . $post['title'] . "</td>";
                 echo "<td>" . $post['topic'] . "</td>";
                 echo "<td>" . $post['publish'] . "</td>";
-                echo "<td><input type='checkbox' name='postSelect[]'></td>";
+                echo "<td><input type='checkbox' name='postSelect[]' value='" . $index . "'></td>";
                 echo "</tr>";
             }
             ?>

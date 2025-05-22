@@ -19,5 +19,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+
+
+if (isset($_POST['delete_post']) && isset($_POST['postSelect']) && count($_POST['postSelect']) > 0) {
+    $selectedIndexes = $_POST['postSelect'];
+    $posts = $_SESSION['posts'];
+    // Sort indexes in reverse order
+    rsort($selectedIndexes);
+    foreach ($selectedIndexes as $index) {
+        unset($posts[$index]);
+    }
+    $_SESSION['posts'] = array_values($posts); 
+}
 $posts = $_SESSION['posts'];
 ?>
