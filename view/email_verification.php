@@ -16,15 +16,23 @@
            
         </div>
         <div class="desc">
+            <?php
+                session_start();
+                $_SESSION['verification_code'] = '1234'; 
+                if (isset($_SESSION['error'])) {
+                    echo '<div style="color:red;">' . $_SESSION['error'] . '</div>';
+                    unset($_SESSION['error']);
+                }
+            ?>
             Please check your inbox and enter the verification code below to verify your email address. The code will expire in <span class="timer">14:48</span>.
         </div>
         <form method="post" action="../controler/email_verificationcheck.php">
             <div class="code-inputs">
-                <input type="text" maxlength="1" required>
-                <input type="text" maxlength="1" required>
-                <input type="text" maxlength="1" required>
-                <input type="text" maxlength="1" required>
-       
+                <input type="text" maxlength="1" name="code1" >
+                <input type="text" maxlength="1" name="code2">
+                <input type="text" maxlength="1" name="code3">
+                <input type="text" maxlength="1" name="code4">
+
             </div>
             <button type="submit">Verify</button>
         </form>
