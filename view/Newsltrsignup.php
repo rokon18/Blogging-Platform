@@ -1,15 +1,15 @@
-<?php include "..//controler/newsltraction.php"; ?>
+<?php include "../controler/newsltraction.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Newsletter Signup</title>
-  <link rel="stylesheet" href="..//assets/css/newsltraction.css">
-  <script src="..//assets/js/newsltraction.js></script>
+  <link rel="stylesheet" href="../assets/css/newsltraction.css">
+  <script src="../assets/js/newsltraction.js"></script>
 </head>
 <body>
 
-   <form method="post" action="..//controler/newsltraction.php">
+   <form method="post" action="../controler/newsltraction.php" onsubmit="return validateForm()">
 
     <table border="0" cellpadding="8" cellspacing="0" align="center">
       <tr>
