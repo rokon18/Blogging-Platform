@@ -1,3 +1,11 @@
+<?php
+session_start();
+$errorMsg = "";
+if (isset($_SESSION['login_error'])) {
+    $errorMsg = $_SESSION['login_error'];
+    unset($_SESSION['login_error']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +39,7 @@
             <a href="forgot_password.php">Forgot Password?</a>
             <br>
             <p>Don't have an account? <a href="../view/signup.php">Sign Up</a></p>
-            <p id="msg"></p>
+            <p id="msg" style="color:red;"><?php echo $errorMsg; ?></p>
         </form>
     </section>
 
