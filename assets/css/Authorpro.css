@@ -1,0 +1,74 @@
+.author-card {
+  max-width: 600px;
+  background: #f7fafd;
+  border-radius: 12px;
+  display: flex;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  margin: 30px auto;
+  border-left: 10px solid #00aaff;
+}
+
+.author-photo {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20px;
+  border: 4px solid #fff;
+}
+
+.author-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.author-info {
+  flex-grow: 1;
+}
+
+.author-info h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #007acc;
+  display: flex;
+  align-items: center;
+}
+
+.verified-badge {
+  background-color: #007acc;
+  color: white;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 8px;
+  margin-left: 10px;
+}
+
+.about {
+  font-size: 14px;
+  color: #333;
+  margin-top: 10px;
+}
+
+.social-links {
+  margin-top: 12px;
+}
+
+.social-links a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #007acc;
+  font-size: 18px;
+}
+
+.view-posts {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #007acc;
+  text-decoration: underline;
+  cursor: pointer;
+}
