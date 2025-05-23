@@ -34,7 +34,7 @@ require_once '../controler/dashboard_controller.php';
                 echo '<img src="' . $article['author_image'] . '" alt="Author">';
                 echo '<span>' . $article['author_name'] . '</span>';
                 echo '</div>';
-                echo '<a href="">Read more →</a>';
+                echo '<a href="details_post.php?id=' . $article['id'] . '">Read more →</a>';
                 echo '</div>';
                 echo '</div>';
             }
