@@ -1,5 +1,10 @@
 <?php
 
+if (!isset($_SESSION['status']) || $_SESSION['status'] !== true) {
+    header("Location: login.php");
+    exit();
+}
+
 $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 'admin_post';
 ?>
 
