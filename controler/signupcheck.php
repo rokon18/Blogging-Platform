@@ -9,52 +9,83 @@ if (isset($_POST['submit'])) {
     $confirmPassword = trim($_POST['confirm_password']);
 
     if ($name == "" || $email == "" || $password == "" || $confirmPassword == "") {
-        echo "Fields cannot be empty!";
+        $_SESSION['signup_error'] = "Fields cannot be empty!";
+        header("Location: ../view/signup.php");
+        exit();
     } elseif (strlen($name) < 2) {
-        echo "Name must contain at least two characters!";
+        $_SESSION['signup_error'] = "Name must contain at least two characters!";
+        header("Location: ../view/signup.php");
+        exit();
     } elseif (!ctype_alpha($name[0])) {
-        echo "Name must start with a letter!";
+        $_SESSION['signup_error'] = "Name must start with a letter!";
+        header("Location: ../view/signup.php");
+        exit();
     } else {
         for ($i = 0; $i < strlen($name); $i++) {
             $char = $name[$i];
             if (!ctype_alpha($char) && $char !== '.' && $char !== '-' && $char !== ' ') {
-                echo "Name can only contain letters, dots (.), dashes (-), and spaces!";
+                $_SESSION['signup_error'] = "Name can only contain letters, dots (.), dashes (-), and spaces!";
+                header("Location: ../view/signup.php");
                 exit();
             }
         }
     }
 
     if (strpos($email, "@") === false || strpos($email, ".") === false) {
-        echo "Email must contain '@' and '.'!";
+        $_SESSION['signup_error'] = "Email must contain '@' and '.'!";
+        header("Location: ../view/signup.php");
+        exit();
     } elseif (strpos($email, "@") > strrpos($email, ".")) {
-        echo "'@' must appear before '.' in email!";
+        $_SESSION['signup_error'] = "'@' must appear before '.' in email!";
+        header("Location: ../view/signup.php");
+        exit();
     } elseif (strlen($password) < 6) {
-        echo "Password must contain at least six characters!";
+        $_SESSION['signup_error'] = "Password must contain at least six characters!";
+        header("Location: ../view/signup.php");
+        exit();
     } elseif ($confirmPassword !== $password) {
-        echo "Passwords do not match!";
-    } else {
+        $_SESSION['signup_error'] = "Passwords do not match!";
+        header("Location: ../view/signup.php");
+        exit();
+    } 
+    else {
         $con = getDatabaseConnection();
         $username = mysqli_real_escape_string($con, $name);
+        $email = mysqli_real_escape_string($con, $email);
+
+        
         $sql = "SELECT * FROM users WHERE username='$username'";
         $result = mysqli_query($con, $sql);
         if (mysqli_num_rows($result) > 0) {
-            echo "Username already exists! Please choose another.";
+            $_SESSION['signup_error'] = "Username already exists! Please choose another.";
+            header("Location: ../view/signup.php");
+            exit();
+        }
+
+        
+        $sql = "SELECT * FROM users WHERE email='$email'";
+        $result = mysqli_query($con, $sql);
+        if (mysqli_num_rows($result) > 0) {
+            $_SESSION['signup_error'] = "Email already registered! Please use another email.";
+            header("Location: ../view/signup.php");
+            exit();
+        }
+
+        
+        $user = [
+            'username' => $name,
+            'password' => $password,
+            'email' => $email
+        ];
+        if (signup($user)) {
+            
+            header("Location: ../view/login.php");
+            exit();
         } else {
-            $user = [
-                'username' => $name,
-                'password' => $password,
-                'email' => $email
-            ];
-            if (signup($user)) {
-                $_SESSION['status'] = true;
-                echo "signup successful!";
-                $_SESSION['username'] = $name;
-                
-                 header("Location: ../view/login.php");
-                 exit();
-            } else {
-                echo "Signup failed! Please try again.";
-            }
+            $_SESSION['signup_error'] = "Signup failed! Please try again.";
+            header("Location: ../view/signup.php");
+            exit();
         }
     }
-} 
+}
+?>

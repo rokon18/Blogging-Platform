@@ -1,4 +1,10 @@
-<?php 
+<?php
+session_start();
+$errorMsg = "";
+if (isset($_SESSION['signup_error'])) {
+    $errorMsg = $_SESSION['signup_error'];
+    unset($_SESSION['signup_error']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +26,7 @@
             <input type="text" id="username" name="username" >
             <br><br>
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email">
+            <input type="text" id="email" name="email">
             <br><br>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" >
@@ -31,7 +37,7 @@
             <button type="submit" name="submit">Sign Up</button>
             <br><br>
             <p>Already have an account? <a href="login.php">Login</a></p>
-            <p id="msg"></p> 
+            <p id="msg" style="color:red;"><?php echo $errorMsg; ?></p> 
         </form>
     </section>
     <script src="../assets/js/signup.js"></script>
