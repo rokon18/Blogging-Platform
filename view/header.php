@@ -26,7 +26,6 @@
         <div class="profile">
             <?php
             
-                session_start();
             
 
             $profileImg = "../assets/img/istockphoto-1053936212-1024x1024.jpg"; 
