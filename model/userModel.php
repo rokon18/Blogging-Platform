@@ -31,6 +31,27 @@
         }
     }
 
+    function updateProfilePic($username, $file) {
+        $con = getDatabaseConnection();
+        $currentUsernameEscaped = mysqli_real_escape_string($con, $username);
+
+        if ($file['error'] === UPLOAD_ERR_OK) {
+            $imgName = $file['name'];
+            $imgTmp = $file['tmp_name'];
+            $imgExt = strtolower(pathinfo($imgName, PATHINFO_EXTENSION));
+            $allowed = ['jpg', 'jpeg', 'png', 'gif'];
+
+            if (in_array($imgExt, $allowed)) {
+                $newImgName = uniqid('profile_', true) . '.' . $imgExt;
+                if (move_uploaded_file($imgTmp, "../assets/img/" . $newImgName)) {
+                    $sql = "UPDATE users SET profile_pic='$newImgName' WHERE username='$currentUsernameEscaped'";
+                    return mysqli_query($con, $sql);
+                }
+            }
+        }
+        return false;
+    }
+
     // function getUserById($id){
 
     // }

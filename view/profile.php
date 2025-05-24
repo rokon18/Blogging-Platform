@@ -16,16 +16,35 @@
         exit();
     }
    include('../view/header.php');
-   ?>
+   $profileImg = "../assets/img/istockphoto-1053936212-1024x1024.jpg"; 
+$con = getDatabaseConnection();
+$username = mysqli_real_escape_string($con, $_SESSION['username']);
+$sql = "SELECT profile_pic FROM users WHERE username='$username'";
+$result = mysqli_query($con, $sql);
+if ($row = mysqli_fetch_assoc($result)) {
+    if (!empty($row['profile_pic'])) {
+        $profileImg = "../assets/img/" . $row['profile_pic'];
+    }
+}
+$profileMsg = "";
+if (isset($_SESSION['profile_msg'])) {
+    $profileMsg = $_SESSION['profile_msg'];
+    unset($_SESSION['profile_msg']);
+}
+?>
     <div class="container">
-        <h1>Edit Profile</h1>
+        <h3>Edit Profile</h3>
+        <?php if (!empty($profileMsg)): ?>
+            <div class="profile-message"><?php echo $profileMsg; ?></div>
+        <?php endif; ?>
 
-        <div class="profile-pic">
-            <img src="#" alt="Profile Picture">
-            <button id="imagermv">Remove</button>
-        </div>
+        <form onsubmit="return validateForm()" method="post" action="../controler/profilecheck.php" enctype="multipart/form-data">
+            <div class="profile-pic">
+                <img src="<?php echo $profileImg; ?>" alt="Profile Picture" id="profilePicPreview">
+                <input type="file" name="profile_pic" id="profile_pic" accept="image/*">
+               
+            </div>
 
-        <form onsubmit="return validateForm()">
             <div>
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username">
@@ -50,7 +69,7 @@
                 <label for="confirm-password">Confirm Password</label>
                 <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your new password">
             </div>
-            <div id="msg" class="error-message"></div>
+            <div id="msg" class="error-message"><?php echo $profileMsg; ?></div>
             <button type="submit">Save Changes</button>
         </form>
 

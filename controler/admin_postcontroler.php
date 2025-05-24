@@ -2,6 +2,11 @@
 
 session_start();
 
+if (!isset($_SESSION['status']) || $_SESSION['status'] !== true) {
+    header("Location: ../view/login.php");
+    exit();
+}
+
 if (!isset($_SESSION['posts'])) {
     $_SESSION['posts'] = array(
         array("author" => "Awa Melvine", "title" => "Defining Moments", "topic" => "Life Experiences", "publish" => "Unpublished"),

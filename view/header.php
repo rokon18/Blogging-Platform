@@ -26,7 +26,7 @@
         <div class="profile">
             <?php
             
-            
+           
 
             $profileImg = "../assets/img/istockphoto-1053936212-1024x1024.jpg"; 
 
