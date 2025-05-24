@@ -13,8 +13,8 @@
     
     <nav>
         <a href="#">Our story</a>
-        <a href="Newsltrsignup.html">Membership</a>
-        <a href="../Blogging-Platform/view/login.php">Write</a>
+        <a href="../view/Newsltrsignup.php">Membership</a>
+        <a href="../view/texteditor.php">Write</a>
         
        
         <div class="notification">
@@ -24,7 +24,28 @@
 
      
         <div class="profile">
-            <img src="../assets/img/istockphoto-1053936212-1024x1024.jpg" alt="Profile" class="profile-img">
+            <?php
+            
+                session_start();
+            
+
+            $profileImg = "../assets/img/istockphoto-1053936212-1024x1024.jpg"; 
+
+            if (isset($_SESSION['username'])) {
+                require_once('../model/userModel.php');
+                $con = getDatabaseConnection();
+                $username = mysqli_real_escape_string($con, $_SESSION['username']);
+                $sql = "SELECT profile_pic FROM users WHERE username='$username'";
+                $result = mysqli_query($con, $sql);
+                if ($row = mysqli_fetch_assoc($result)) {
+                    if (!empty($row['profile_pic'])) {
+                       
+                        $profileImg = "../assets/img/" . $row['profile_pic'];
+                    }
+                }
+            }
+            ?>
+            <img src="<?php echo $profileImg; ?>" alt="Profile" class="profile-img">
              <span class="username" onclick="toggleMenu()">
                     <?php
                     if (isset($_SESSION['username'])) {
@@ -44,5 +65,5 @@
 </header>
 </body>
 </html>
-   
-  
+
+

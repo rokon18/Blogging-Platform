@@ -9,11 +9,14 @@
     </script>
 </head>
 <body>
-    <div class="header">
-        <label for="header">Blogging</label>
-
-      
-    </div>
+<?php
+    session_start();
+    if (!isset($_SESSION['status']) || $_SESSION['status'] !== true) {
+        header("Location: ../view/login.php");
+        exit();
+    }
+   include('../view/header.php');
+   ?>
     <div class="container">
         <h1>Edit Profile</h1>
 
