@@ -2,6 +2,7 @@
 
 
 require_once '../controler/dashboard_controller.php';
+require_once '../model/postmodel.php';
 
 $post_id = isset($_REQUEST['id']) ? $_REQUEST['id'] : '';
 
@@ -34,7 +35,10 @@ foreach ($articles as $article) {
                     | <a href="#" id="shareBtn">Share</a>
                     <span id="copyMsg" style="display:none; color:green; margin-left:8px;">Link copied!</span>
                 </div>
-                <img src="<?php echo htmlspecialchars($selected_article['image_url']); ?>" alt="Post Image" class="post-image">
+                <div class="image"> <?php
+                echo '<img src="../assets/img/' . htmlspecialchars($selected_article['img']) . '" alt="Article Image">';
+                ?></div>
+               
                 <div class="content">
                     <?php
                     if (isset($selected_article['content'])) {

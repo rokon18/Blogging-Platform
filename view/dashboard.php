@@ -11,9 +11,7 @@ require_once '../controler/dashboard_controller.php';
     <link rel="stylesheet" href="../assets/css/dashboard.css">
 </head>
 <body>
-    <?php
-  include '../view/header.php';
-    ?>
+    <?php include '../view/header.php'; ?>
     <div class="container">
         <div class="header">
             <h2>Recent Articles</h2>
@@ -23,16 +21,16 @@ require_once '../controler/dashboard_controller.php';
             <?php
             foreach ($articles as $article) {
                 echo '<div class="card">';
-                echo '<img src="' . $article['image_url'] . '" alt="Article Image">';
+                echo '<img src="../assets/img/' . htmlspecialchars($article['img']) . '" alt="Article Image">';
                 echo '<div class="card-content">';
-                echo '<div class="category">' . $article['category'] . '</div>';
-                echo '<h3>' . $article['title'] . '</h3>';
-                echo '<p>' . $article['description'] . '</p>';
+                echo '<div class="category">' . htmlspecialchars($article['category']) . '</div>';
+                echo '<h3>' . htmlspecialchars($article['title']) . '</h3>';
+                echo '<p>' . htmlspecialchars($article['description']) . '</p>';
                 echo '</div>';
                 echo '<div class="card-footer">';
                 echo '<div class="author">';
-                echo '<img src="' . $article['author_image'] . '" alt="Author">';
-                echo '<span>' . $article['author_name'] . '</span>';
+                echo '<img src="' . htmlspecialchars($article['author_image']) . '" alt="Author">';
+                echo '<span>' . htmlspecialchars($article['author_name']) . '</span>';
                 echo '</div>';
                 echo '<a href="details_post.php?id=' . $article['id'] . '">Read more →</a>';
                 echo '</div>';
