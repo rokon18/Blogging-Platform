@@ -52,11 +52,24 @@
         return false;
     }
 
-    // function getUserById($id){
+    function getAllUsers() {
+        $con = getDatabaseConnection();
+        $sql = "SELECT id, username, email, role FROM users";
+        $result = mysqli_query($con, $sql);
+        $users = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $users[] = $row;
+        }
+        return $users;
+    }
 
-    // }
-
-  
+    function updateUserRole($id, $role) {
+        $con = getDatabaseConnection();
+        $id = intval($id);
+        $role = mysqli_real_escape_string($con, $role);
+        $sql = "UPDATE users SET role='$role' WHERE id=$id";
+        return mysqli_query($con, $sql);
+    }
 
     function deleteUser($id) {
         $con = getDatabaseConnection();

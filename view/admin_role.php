@@ -26,9 +26,9 @@ require_once '../controler/admin_rolecontroler.php';
         foreach ($users as $index => $user) {
             echo "<tr>";
             echo "<td>" . ($index + 1) . "</td>";
-            echo "<td>" . $user['username'] . "</td>";
-            echo "<td>" . $user['email'] . "</td>";
-            echo "<td>" . $user['role'] . "</td>";
+            echo "<td>" . htmlspecialchars($user['username']) . "</td>";
+            echo "<td>" . htmlspecialchars($user['email']) . "</td>";
+            echo "<td>" . htmlspecialchars($user['role']) . "</td>";
             echo '<td>
                 <select name="role[' . $user['id'] . ']">
                     <option value="Admin"' . ($user['role'] == 'Admin' ? ' selected' : '') . '>Admin</option>
