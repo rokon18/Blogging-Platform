@@ -16,8 +16,7 @@ require_once '../controler/admin_postcontroler.php';
                 <th>SN</th>
                 <th>Author</th>
                 <th>Title</th>
-                <th>Topic</th>
-                <th>Status</th>
+                <th>Category</th>
                 <th>Select</th>
             </tr>
         </thead>
@@ -26,11 +25,10 @@ require_once '../controler/admin_postcontroler.php';
             foreach ($posts as $index => $post) {
                 echo "<tr>";
                 echo "<td>" . ($index + 1) . "</td>";
-                echo "<td>" . $post['author'] . "</td>";
-                echo "<td>" . $post['title'] . "</td>";
-                echo "<td>" . $post['topic'] . "</td>";
-                echo "<td>" . $post['publish'] . "</td>";
-                echo "<td><input type='checkbox' name='postSelect[]' value='" . $index . "'></td>";
+                echo "<td>" . htmlspecialchars($post['author_name']) . "</td>";
+                echo "<td>" . htmlspecialchars($post['title']) . "</td>";
+                echo "<td>" . htmlspecialchars($post['category']) . "</td>";
+                echo "<td><input type='checkbox' name='postSelect[]' value='" . $post['id'] . "'></td>";
                 echo "</tr>";
             }
             ?>
@@ -45,5 +43,5 @@ require_once '../controler/admin_postcontroler.php';
 
 <div class="actions">
     <button class="trash">Trash</button>
-    <button class="add-post">Add Post</button>
+    <button class="add-post" onclick="location.href='texteditor.php'">Add Post</button>
 </div>

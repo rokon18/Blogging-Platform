@@ -12,4 +12,9 @@ function getAllPosts() {
     return $posts;
 }
 
+function deletePostById($id) {
+    $conn = getDatabaseConnection();
+    $sql = "DELETE FROM posts WHERE id = " . intval($id);
+    return mysqli_query($conn, $sql);
+}
 ?>
