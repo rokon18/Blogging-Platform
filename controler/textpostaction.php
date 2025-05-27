@@ -58,7 +58,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Handle image upload if present (for multipart/form-data)
         if (isset($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
             $uploadDir = '../assets/img/';
-            $imgName = basename($_FILES["image"]["name"]);
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0777, true);
+            }
+            $imgExt = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
+            $imgName = uniqid('post_', true) . '.' . $imgExt;
             $targetFile = $uploadDir . $imgName;
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
                 $img = $imgName;

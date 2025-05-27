@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <form id="textPostForm" enctype="multipart/form-data">
+  <form id="textPostForm" method="POST" enctype="multipart/form-data">
 
   <?php if (!empty($success)) echo "<p style='color:green;'>$success</p>"; ?>
 
