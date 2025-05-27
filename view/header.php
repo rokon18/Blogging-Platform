@@ -60,7 +60,7 @@ session_start();
                 </span>
             <div class="dropdown-menu" id="profileMenu">
                 <a href="../view/profile.php">Update Profile</a>
-                <?php if ($userRole === 'admin'){ ?>
+                <?php if ($userRole === 'Admin'){ ?>
                     <a href="../view/adminpage.php">Admin Page</a>
                 <?php } else { ?>
                     <a href="#" onclick="alert('Access Denied: Admins only!'); return false;">Admin Page</a>
