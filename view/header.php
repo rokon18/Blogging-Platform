@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,23 +32,24 @@
            
 
             $profileImg = "../assets/img/istockphoto-1053936212-1024x1024.jpg"; 
+            $userRole = null;
 
             if (isset($_SESSION['username'])) {
                 require_once('../model/userModel.php');
                 $con = getDatabaseConnection();
                 $username = mysqli_real_escape_string($con, $_SESSION['username']);
-                $sql = "SELECT profile_pic FROM users WHERE username='$username'";
+                $sql = "SELECT profile_pic, role FROM users WHERE username='$username'";
                 $result = mysqli_query($con, $sql);
                 if ($row = mysqli_fetch_assoc($result)) {
                     if (!empty($row['profile_pic'])) {
-                       
                         $profileImg = "../assets/img/" . $row['profile_pic'];
                     }
+                    $userRole = $row['role'];
                 }
             }
             ?>
             <img src="<?php echo $profileImg; ?>" alt="Profile" class="profile-img">
-             <span class="username" onclick="toggleMenu()">
+            <span class="username" onclick="toggleMenu()">
                     <?php
                     if (isset($_SESSION['username'])) {
                         echo $_SESSION['username'];
@@ -56,7 +60,11 @@
                 </span>
             <div class="dropdown-menu" id="profileMenu">
                 <a href="../view/profile.php">Update Profile</a>
-                <a href="../view/adminpage.php">Admin Page</a>
+                <?php if ($userRole === 'admin'){ ?>
+                    <a href="../view/adminpage.php">Admin Page</a>
+                <?php } else { ?>
+                    <a href="#" onclick="alert('Access Denied: Admins only!'); return false;">Admin Page</a>
+                <?php } ?>
                 <a href="../controler/logout.php">Logout</a>
             </div>
         </div>

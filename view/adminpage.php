@@ -1,7 +1,6 @@
 <?php
 
 
-
 $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 'admin_post';
 ?>
 
