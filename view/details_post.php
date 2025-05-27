@@ -52,7 +52,7 @@ foreach ($articles as $article) {
     
 <script>
 document.getElementById('shareBtn').onclick = function(e) {
-    e.preventDefault();
+    
     navigator.clipboard.writeText(window.location.href).then(function() {
         document.getElementById('copyMsg').style.display = 'inline';
         setTimeout(function() {
