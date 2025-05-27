@@ -56,12 +56,13 @@
 
     // }
 
-    // function addUser($user){
+  
 
-    // }
-
-    // function deleteUser($id){
-
-    // }
+    function deleteUser($id) {
+        $con = getDatabaseConnection();
+        $id = intval($id);
+        $sql = "DELETE FROM users WHERE id = $id";
+        return mysqli_query($con, $sql);
+    }
 
 ?>

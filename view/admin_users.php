@@ -11,21 +11,19 @@
         </tr>
     </thead>
     <tbody>
-        <?php
-        foreach ($users as $index => $user) {
-            echo "<tr>";
-            echo "<td>" . ($index + 1) . "</td>";
-            echo "<td>" . $user['username'] . "</td>";
-            echo "<td>" . $user['email'] . "</td>";
-            echo "<td>" . $user['role'] . "</td>";
-            echo '<td>
-                <form method="POST" action="" >
-                    <input type="hidden" name="delete_id" value="' . $user['id'] . '">
-                    <button type="submit" class="delete-btn" onclick="return confirm(\'Are you sure?\')">Delete</button>
-                </form>
-            </td>';
-            echo "</tr>";
-        }
-        ?>
+        <?php foreach ($users as $index => $user): ?>
+            <tr>
+                <td><?php echo $index + 1; ?></td>
+                <td><?php echo htmlspecialchars($user['username']); ?></td>
+                <td><?php echo htmlspecialchars($user['email']); ?></td>
+                <td><?php echo htmlspecialchars($user['role']); ?></td>
+                <td>
+                    <form method="POST" action="">
+                        <input type="hidden" name="delete_id" value="<?php echo $user['id']; ?>">
+                        <button type="submit" class="delete-btn" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <?php endforeach; ?>
     </tbody>
 </table>

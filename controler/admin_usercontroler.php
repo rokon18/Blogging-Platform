@@ -1,26 +1,23 @@
 <?php
 
-
-
-if (!isset($_SESSION['users'])) {
-    $_SESSION['users'] = [
-        ["id" => 1, "username" => "admin", "email" => "admin@example.com", "role" => "Admin"],
-        ["id" => 2, "username" => "john_doe", "email" => "john@example.com", "role" => "user"],
-        ["id" => 3, "username" => "jane_smith", "email" => "jane@example.com", "role" => "Subscriber"]
-    ];
-}
-
+require_once '../model/userModel.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
-    $users = $_SESSION['users'];
-    foreach ($users as $index => $user) {
-        if ($user['id'] == $_POST['delete_id']) {
-            unset($users[$index]);
-            break;
-        }
-    }
-    $_SESSION['users'] = array_values($users); 
+    $deleteId = $_POST['delete_id'];
+    deleteUser($deleteId);
 }
 
-$users = $_SESSION['users'];
+// Fetch all users from the database
+function getAllUsers() {
+    $con = getDatabaseConnection();
+    $sql = "SELECT id, username, email, role FROM users";
+    $result = mysqli_query($con, $sql);
+    $users = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $users[] = $row;
+    }
+    return $users;
+}
+
+$users = getAllUsers();
 ?>
