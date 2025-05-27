@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <form method="POST" action="../controler/textpostaction.php" enctype="multipart/form-data" onsubmit="return validateForm();">
+  <form id="textPostForm" enctype="multipart/form-data">
 
   <?php if (!empty($success)) echo "<p style='color:green;'>$success</p>"; ?>
 
@@ -20,6 +20,11 @@
   <label for="content">Post Content *</label>
   <textarea id="content" name="content" rows="8" required><?php echo htmlspecialchars($content); ?></textarea>
   <span style="color:red;"><?php echo $contentErr; ?></span>
+
+  <label for="description">Post Description *</label>
+  <textarea id="description" name="description" rows="8" required><?php echo htmlspecialchars($content); ?></textarea>
+  <span style="color:red;"><?php echo $descriptionErr; ?></span>
+
 
   <label for="category">Post Category *</label>
   <select id="category" name="category" required>
@@ -41,6 +46,51 @@
     <button type="submit" name="draft" class="btn-draft">Save Draft</button>
   </div>
 </form>
+
+<script>
+document.getElementById('textPostForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var form = document.getElementById('textPostForm');
+  var title = form.title.value.trim();
+  var content = form.content.value.trim();
+  var description = form.description.value.trim();
+  var category = form.category.value;
+  var imageInput = form.image;
+
+  if (!title || !content || !description || !category) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+
+  var formData = new FormData();
+  formData.append('title', title);
+  formData.append('content', content);
+  formData.append('description', description);
+  formData.append('category', category);
+  if (imageInput && imageInput.files.length > 0) {
+    formData.append('image', imageInput.files[0]);
+  }
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '../controler/textpostaction.php', true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        var response = xhr.responseText;
+        if (response.includes('✅ Post submitted successfully!')) {
+          alert('Post submitted successfully!');
+          form.reset();
+        } else {
+          alert('Failed to submit post. Please try again.');
+        }
+      } else {
+        alert('Failed to submit post. Please try again.');
+      }
+    }
+  };
+  xhr.send(formData);
+});
+</script>
 
 </body>
 </html>

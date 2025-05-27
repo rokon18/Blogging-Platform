@@ -1,10 +1,15 @@
 <?php
 include_once '../model/texteditorModel.php';
-$title = $content = $category = "";
-$titleErr = $contentErr = $categoryErr = "";
+$title = $content = $description = $category = "";
+$titleErr = $contentErr = $descriptionErr = $categoryErr = "";
 $success = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Support JSON requests (AJAX)
+    if (isset($_SERVER['CONTENT_TYPE']) && strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false) {
+        $input = json_decode(file_get_contents('php://input'), true);
+        $_POST = is_array($input) ? $input : [];
+    }
     $valid = true;
 
     if (empty($_POST["title"])) {
@@ -25,6 +30,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $content = trim($_POST["content"]);
     }
 
+    if (empty($_POST["description"])) {
+        $descriptionErr = "Description is required.";
+        $valid = false;
+    } else {
+        $description = trim($_POST["description"]);
+    }
+
     if (empty($_POST["category"])) {
         $categoryErr = "Category is required.";
         $valid = false;
@@ -42,13 +54,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($valid) {
-        // Insert post into database
-        if (createTextPost($title, $content, $category)) {
-            $success = "✅ Post submitted successfully!";
-            $title = $content = $category = "";
-        } else {
-            $success = "❌ Failed to submit post. Please try again.";
+        $img = null;
+        // Handle image upload if present (for multipart/form-data)
+        if (isset($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
+            $uploadDir = '../assets/img/';
+            $imgName = basename($_FILES["image"]["name"]);
+            $targetFile = $uploadDir . $imgName;
+            if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
+                $img = $imgName;
+            } else {
+                $img = null;
+            }
         }
+        if (createTextPost($title, $content, $description, $category, $img)) {
+            // For AJAX: return plain text response
+            echo "✅ Post submitted successfully!";
+            exit;
+        } else {
+            echo "❌ Failed to submit post. Please try again.";
+            exit;
+        }
+    } else {
+        // For AJAX: return validation error
+        echo "❌ Failed to submit post. Please check your input.";
+        exit;
     }
 }
 ?>

@@ -2,9 +2,9 @@
 
 include_once "../model/db.php";
 
-function createTextPost($title, $content, $img) {
+function createTextPost($title, $content, $description, $category, $img) {
     $conn = getDatabaseConnection();
-    $sql = "INSERT INTO posts (title, content, img) VALUES ('" . mysqli_real_escape_string($conn, $title) . "', '" . mysqli_real_escape_string($conn, $content) . "', '" . mysqli_real_escape_string($conn, $img) . "')";
+    $sql = "INSERT INTO posts (title, content, description, category, img) VALUES ('" . mysqli_real_escape_string($conn, $title) . "', '" . mysqli_real_escape_string($conn, $content) . "', '" . mysqli_real_escape_string($conn, $description) . "', '" . mysqli_real_escape_string($conn, $category) . "', '" . mysqli_real_escape_string($conn, $img) . "')";
     return mysqli_query($conn, $sql);
 }
 
@@ -15,9 +15,9 @@ function getTextPostById($id) {
     return mysqli_fetch_assoc($result);
 }
 
-function updateTextPost($id, $title, $content, $img) {
+function updateTextPost($id, $title, $content, $description, $category, $img) {
     $conn = getDatabaseConnection();
-    $sql = "UPDATE posts SET title = '" . mysqli_real_escape_string($conn, $title) . "', content = '" . mysqli_real_escape_string($conn, $content) . "', img = '" . mysqli_real_escape_string($conn, $img) . "' WHERE id = '" . intval($id) . "'";
+    $sql = "UPDATE posts SET title = '" . mysqli_real_escape_string($conn, $title) . "', content = '" . mysqli_real_escape_string($conn, $content) . "', description = '" . mysqli_real_escape_string($conn, $description) . "', category = '" . mysqli_real_escape_string($conn, $category) . "', img = '" . mysqli_real_escape_string($conn, $img) . "' WHERE id = '" . intval($id) . "'";
     return mysqli_query($conn, $sql);
 }
 

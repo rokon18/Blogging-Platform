@@ -24,8 +24,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
 
     if (empty($email_error) && empty($consent_error)) {
-        // Insert into database using model function
         if (createNewsletterSignup($email)) {
+            $newsletter_subscribed = [];
+            if (isset($_COOKIE['newsletter_subscribed'])) {
+                $newsletter_subscribed = json_decode($_COOKIE['newsletter_subscribed'], true);
+                if (!is_array($newsletter_subscribed)) {
+                    $newsletter_subscribed = [];
+                }
+            }
+            $newsletter_subscribed[$email] = [
+                'email' => $email,
+                'date' => date('Y-m-d H:i:s')
+            ];
+            setcookie('newsletter_subscribed', json_encode($newsletter_subscribed), time() + 60*60*24*30, "/"); // 30 days
             $success_message = "✅ Thank you for subscribing!";
         } else {
             $success_message = "❌ Subscription failed. Please try again.";
