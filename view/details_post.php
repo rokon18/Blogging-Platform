@@ -1,17 +1,27 @@
 <?php
 
-
 require_once '../controler/dashboard_controller.php';
 require_once '../model/postmodel.php';
 
 $post_id = isset($_REQUEST['id']) ? $_REQUEST['id'] : '';
 
+$selected_post = null;
 
-$selected_article = null;
-foreach ($articles as $article) {
-    if ($article['id'] == $post_id) {
-        $selected_article = $article;
+// Search in featured posts first
+foreach ($featured_posts as $post) {
+    if ($post['id'] == $post_id) {
+        $selected_post = $post;
         break;
+    }
+}
+
+// If not found in featured, search in recent posts
+if (!$selected_post) {
+    foreach ($recent_posts as $post) {
+        if ($post['id'] == $post_id) {
+            $selected_post = $post;
+            break;
+        }
     }
 }
 ?>
@@ -23,26 +33,25 @@ foreach ($articles as $article) {
     <link rel="stylesheet" href="../assets/css/details_post.css">
 </head>
 <body>
-    <?php
-    include '../view/header.php';
-    ?>
+    <?php include '../view/header.php'; ?>
     <div class="container">
-        <?php if ($selected_article): ?>
+        <?php if ($selected_post): ?>
             <div class="post-details">
-                <h2><?php echo htmlspecialchars($selected_article['title']); ?></h2>
+                <h2><?php echo htmlspecialchars($selected_post['title']); ?></h2>
                 <div class="meta">
-                    <span><?php echo htmlspecialchars($selected_article['author_name']); ?></span>
+                    <span><?php echo htmlspecialchars($selected_post['author_name']); ?></span>
                     | <a href="#" id="shareBtn">Share</a>
                     <span id="copyMsg" style="display:none; color:green; margin-left:8px;">Link copied!</span>
                 </div>
-                <div class="image"> <?php
-                echo '<img src="../assets/img/' . htmlspecialchars($selected_article['img']) . '" alt="Article Image">';
-                ?></div>
-               
+                <div class="image">
+                    <?php
+                    echo '<img src="../assets/img/' . htmlspecialchars($selected_post['img']) . '" alt="Article Image">';
+                    ?>
+                </div>
                 <div class="content">
                     <?php
-                    if (isset($selected_article['content'])) {
-                        echo '<p>' . htmlspecialchars($selected_article['content']) . '</p>';
+                    if (isset($selected_post['content'])) {
+                        echo '<p>' . htmlspecialchars($selected_post['content']) . '</p>';
                     } else {
                         echo '<em>No content available for this post.</em>';
                     }
@@ -56,7 +65,6 @@ foreach ($articles as $article) {
     
 <script>
 document.getElementById('shareBtn').onclick = function(e) {
-    
     navigator.clipboard.writeText(window.location.href).then(function() {
         document.getElementById('copyMsg').style.display = 'inline';
         setTimeout(function() {

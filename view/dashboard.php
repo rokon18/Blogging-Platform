@@ -13,26 +13,55 @@ require_once '../controler/dashboard_controller.php';
 <body>
     <?php include '../view/header.php'; ?>
     <div class="container">
+        <!-- Featured Posts Section -->
+        <?php if (!empty($featured_posts)) { ?>
+            <div class="header">
+                <h2>Featured Posts</h2>
+            </div>
+            <div class="articles">
+                <?php
+                foreach ($featured_posts as $post) {
+                    echo '<div class="card">';
+                    echo '<img src="../assets/img/' . htmlspecialchars($post['img']) . '" alt="Post Image">';
+                    echo '<div class="card-content">';
+                    echo '<div class="category">' . htmlspecialchars($post['category']) . '</div>';
+                    echo '<h3>' . htmlspecialchars($post['title']) . '</h3>';
+                    echo '<p>' . htmlspecialchars($post['description']) . '</p>';
+                    echo '</div>';
+                    echo '<div class="card-footer">';
+                    echo '<div class="author">';
+                    echo '<img src="' . htmlspecialchars($post['author_image']) . '" alt="Author">';
+                    echo '<span>' . htmlspecialchars($post['author_name']) . '</span>';
+                    echo '</div>';
+                    echo '<a href="details_post.php?id=' . $post['id'] . '">Read more →</a>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+                ?>
+            </div>
+        <?php } ?>
+
+        <!-- Recent Posts Section -->
         <div class="header">
-            <h2>Recent Articles</h2>
+            <h2>Recent Posts</h2>
             <a href="#">See All</a>
         </div>
         <div class="articles">
             <?php
-            foreach ($articles as $article) {
+            foreach ($recent_posts as $post) {
                 echo '<div class="card">';
-                echo '<img src="../assets/img/' . htmlspecialchars($article['img']) . '" alt="Article Image">';
+                echo '<img src="../assets/img/' . htmlspecialchars($post['img']) . '" alt="Post Image">';
                 echo '<div class="card-content">';
-                echo '<div class="category">' . htmlspecialchars($article['category']) . '</div>';
-                echo '<h3>' . htmlspecialchars($article['title']) . '</h3>';
-                echo '<p>' . htmlspecialchars($article['description']) . '</p>';
+                echo '<div class="category">' . htmlspecialchars($post['category']) . '</div>';
+                echo '<h3>' . htmlspecialchars($post['title']) . '</h3>';
+                echo '<p>' . htmlspecialchars($post['description']) . '</p>';
                 echo '</div>';
                 echo '<div class="card-footer">';
                 echo '<div class="author">';
-                echo '<img src="' . htmlspecialchars($article['author_image']) . '" alt="Author">';
-                echo '<span>' . htmlspecialchars($article['author_name']) . '</span>';
+                echo '<img src="' . htmlspecialchars($post['author_image']) . '" alt="Author">';
+                echo '<span>' . htmlspecialchars($post['author_name']) . '</span>';
                 echo '</div>';
-                echo '<a href="details_post.php?id=' . $article['id'] . '">Read more →</a>';
+                echo '<a href="details_post.php?id=' . $post['id'] . '">Read more →</a>';
                 echo '</div>';
                 echo '</div>';
             }

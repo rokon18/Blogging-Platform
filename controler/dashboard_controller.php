@@ -9,5 +9,6 @@ if (!isset($_SESSION['status'])) {
 
 require_once '../model/postmodel.php';
 
-$articles = getAllPosts();
+$featured_posts = getFeaturedPosts();
+$recent_posts = getAllPosts();        
 ?>

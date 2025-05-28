@@ -29,4 +29,18 @@ function addFeaturedPost($postId) {
     }
     return false;
 }
+
+function getFeaturedPosts() {
+    $conn = getDatabaseConnection();
+    $sql = "SELECT p.* 
+            FROM posts p
+            INNER JOIN featured_posts f ON p.id = f.post_id
+            ORDER BY f.id DESC";
+    $result = mysqli_query($conn, $sql);
+    $posts = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $posts[] = $row;
+    }
+    return $posts;
+}
 ?>
