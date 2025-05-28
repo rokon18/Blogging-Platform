@@ -15,7 +15,7 @@ session_start();
     <div class="logo">Blogging</div>
     
     <nav>
-        <a href="#">Our story</a>
+        <a href="contact.php">Contact Us</a>
         <a href="../view/Newsltrsignup.php">Membership</a>
         <a href="../view/texteditor.php">Write</a>
         
