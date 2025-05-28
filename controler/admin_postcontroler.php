@@ -18,10 +18,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Please select at least one post.";
     }
 
- 
     if (isset($_POST['delete_post']) && isset($_POST['postSelect']) && count($_POST['postSelect']) > 0) {
         foreach ($_POST['postSelect'] as $postId) {
             deletePostById($postId);
+        }
+    }
+
+    if (isset($_POST['add_feature']) && isset($_POST['postSelect']) && count($_POST['postSelect']) > 0) {
+        foreach ($_POST['postSelect'] as $postId) {
+            addFeaturedPost($postId);
         }
     }
 }

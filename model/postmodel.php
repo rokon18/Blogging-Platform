@@ -17,4 +17,16 @@ function deletePostById($id) {
     $sql = "DELETE FROM posts WHERE id = " . intval($id);
     return mysqli_query($conn, $sql);
 }
+
+function addFeaturedPost($postId) {
+    $conn = getDatabaseConnection();
+    // Prevent duplicate featured posts
+    $checkSql = "SELECT id FROM featured_posts WHERE post_id = " . intval($postId);
+    $checkResult = mysqli_query($conn, $checkSql);
+    if (mysqli_num_rows($checkResult) == 0) {
+        $sql = "INSERT INTO featured_posts (post_id) VALUES (" . intval($postId) . ")";
+        return mysqli_query($conn, $sql);
+    }
+    return false;
+}
 ?>

@@ -9,7 +9,7 @@ require_once '../controler/admin_postcontroler.php';
     </div>
 <?php } ?>
 
-<form method="POST" action="">
+<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <table>
         <thead>
             <tr>
@@ -28,7 +28,7 @@ require_once '../controler/admin_postcontroler.php';
                 echo "<td>" . htmlspecialchars($post['author_name']) . "</td>";
                 echo "<td>" . htmlspecialchars($post['title']) . "</td>";
                 echo "<td>" . htmlspecialchars($post['category']) . "</td>";
-                echo "<td><input type='checkbox' name='postSelect[]' value='" . $post['id'] . "'></td>";
+                echo "<td><input type='checkbox' name='postSelect[]' value='" . $post['id'] . "' ></td>";
                 echo "</tr>";
             }
             ?>
