@@ -87,5 +87,16 @@ if (isset($_POST['submit'])) {
             exit();
         }
     }
+} elseif (isset($_POST['username'])) {
+    $username = trim($_POST['username']);
+    $con = getDatabaseConnection();
+    $usernameEscaped = mysqli_real_escape_string($con, $username);
+    $sql = "SELECT * FROM users WHERE username='$usernameEscaped'";
+    $result = mysqli_query($con, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        echo "Username already exists!";
+    } else {
+        echo "Username available";
+    }
 }
 ?>

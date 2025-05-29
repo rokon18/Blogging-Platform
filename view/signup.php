@@ -23,7 +23,8 @@ if (isset($_SESSION['signup_error'])) {
         <!--<form align="center" onsubmit="return validateName()">-->
          <form  align="center" method="post" action="../controler/signupcheck.php"onsubmit="return validateName()">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" >
+            <input type="text" id="username" name="username">
+            <span id="username-status" style="color:red; font-size:13px;"></span>
             <br><br>
             <label for="email">Email:</label>
             <input type="text" id="email" name="email">

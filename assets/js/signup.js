@@ -65,3 +65,26 @@ function validateName() {
     msg.innerHTML = ""; 
     return true;
 }
+
+document.getElementById('username').addEventListener('input', function() {
+    let username = this.value.trim();
+    let statusSpan = document.getElementById('username-status');
+    if (username.length < 2) {
+        statusSpan.textContent = '';
+        return;
+    }
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', '../controler/signupcheck.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            statusSpan.textContent = xhr.responseText;
+            if (xhr.responseText === "Username available") {
+                statusSpan.style.color = 'green';
+            } else {
+                statusSpan.style.color = 'red';
+            }
+        }
+    };
+    xhr.send('username=' + encodeURIComponent(username));
+});
